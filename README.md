@@ -14,31 +14,23 @@ Connect pins according to data sheet
 
 ```c++
 #include <Arduino.h>
-#include <MotorController.h>
+#include <MotorShieldController.h>
 
-// H-Bridge pins
-constexpr auto LOGIC_C = 8;
-constexpr auto LOGIC_D = 9;
-constexpr auto ENABLE_A = 3;
+// shield pins
+constexpr auto DIR_LEFT = 13;
+constexpr auto ENABLE_LEFT = 11;
 
-MotorController mc(LOGIC_C, LOGIC_D, ENABLE_A);
+constexpr auto DIR_RIGHT = 12;
+constexpr auto ENABLE_RIGHT = 10;
 
-void setup() { 
-    mc.setSpeed(50U);
+MotorShieldController mc(DIR_LEFT, DIR_RIGHT, ENABLE_LEFT, ENABLE_RIGHT);
+
+void setup() {
 }
 
 void loop() {
-    // clockwise for 1s
-    mc.goClockWise();
-    delay(1000);
-    // coast stop (give 2 seconds)
-    mc.floatStop();
-    delay(2000);
-    // counterclockwise for 1s
-    mc.goCounterClockWise();
-    delay(1000);
-    // hard stop (give 2 seconds and compare difference with float stop)
-    mc.fastStop();
-    delay(2000);
+    mc.setLeftVelocity(50);
+    mc.setRightVelocity(-50);
+    mc.go();
 }
 ```
