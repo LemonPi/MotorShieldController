@@ -26,6 +26,9 @@ class MotorShieldController {
     void setRightVelocity(int pwm);
     void floatStop();
 
+    int getLeftPWM() const;
+    int getRightPWM() const;
+
     /**
      * @brief Rotate counterclockwise at last set speed.
      * Motor will continue rotating until another rotation command is sent.

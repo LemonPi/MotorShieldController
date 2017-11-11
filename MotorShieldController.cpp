@@ -20,6 +20,15 @@ void MotorShieldController::setRightVelocity(int pwm) {
     _lastRightPWM = pwm;
 }
 
+int MotorShieldController::getLeftPWM() const {
+    return _lastLeftPWM;
+}
+
+int MotorShieldController::getRightPWM() const {
+    return _lastRightPWM;
+}
+
+
 void MotorShieldController::floatStop() {
     setLeftVelocity(0);
     setRightVelocity(0);
